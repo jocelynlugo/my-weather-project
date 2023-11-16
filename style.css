@@ -34,11 +34,19 @@ main {
   justify-content: space-evenly;
   font-size: 18px;
 }
-
-.weather-app-icon {
+.descrip {
+  display: flex;
+  line-height: 4;
+}
+div#icon {
+  display: flex;
   width: 40px;
   height: 40px;
+  padding: 0;
+  margin-top: 15px;
+  margin-left: -33px;
 }
+
 .search-input {
   width: 80%;
   border: none;
