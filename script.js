@@ -16,6 +16,8 @@ function refreshWeather(response) {
   windSpeedElement.innerHTML = `Winds ${response.data.wind.speed}MPH`;
   temperatureElement.innerHTML = `${Math.round(temperature)}°F`;
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon"/>`;
+
+  getForecast(response.data.city);
 }
 
 function formatDate(date) {
@@ -52,7 +54,16 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
-function displayForecast() {
+function getForecast(city) {
+  let apiKey = "oaf35ec85ab9436b73053b0e51t48cf9";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=imperial`;
+  axios(apiUrl).then(displayForecast);
+  console.log(apiUrl);
+}
+
+function displayForecast(response) {
+  console.log(response.data);
+
   let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
   let forecastHtml = "";
 
@@ -80,4 +91,3 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Newark");
-displayForecast();
